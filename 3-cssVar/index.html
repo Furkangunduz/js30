@@ -55,25 +55,21 @@
     }
   </style>
     
-  <script>
-    function getValBlur(){
-        const val = document.querySelector("#blur").value;
-        document.documentElement.style.setProperty("--blur", `${val}px`)
-    }
-    function getValSpacing(){
-        const val =document.querySelector("#spacing").value;
-        document.documentElement.style.setProperty("--spacing",`${val}px`)
-    }
-    function getValColor(){
-        const val = document.querySelector("#base").value;
-        document.documentElement.style.setProperty("--base",`${val}`)
-        console.log(val);
-    }
 
-    setInterval(getValBlur,100);
-    setInterval(getValSpacing,100);
-    setInterval(getValColor,100);
-  </script>
+  <script>
+    const inputs = document.querySelectorAll(".controls input")
+    
+    function handleUpdate(){
+        const suffix = this.dataset.sizing || "";
+        
+        
+        document.documentElement.style.setProperty(`--${this.name}`,`${this.value+suffix}`)
+
+    }
+    inputs.forEach((input) => input.addEventListener("change", handleUpdate))
+    inputs.forEach((input) => input.addEventListener("mousemove",handleUpdate))
+  
+    </script>
 
 </body>
 </html>
